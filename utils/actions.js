@@ -1,0 +1,2 @@
+
+export const SET_DISPATCHES = 'SET_DISPATCHES';
