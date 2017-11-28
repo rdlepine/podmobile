@@ -1,17 +1,25 @@
-const api = "http://localhost"
-
+const api = "http://192.168.1.64/pod"
 
 // Generate a unique token for storing your bookshelf data on the backend server.
-let token = localStorage.token
-if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
+let token = "PODME";
 
 const headers = {
   'Accept': 'application/json',
   'Authorization': token
 }
 
-export const getDispatches = () =>  fetch(`${api}/PalmStopsJson.php`, { headers })
-.then(res => res.json())
-.then(posts => posts)
-
+export const getDispatches = () =>  {
+       return fetch(`${api}/PalmStopsJson.php`, { headers })
+              .then( (res) => { 
+                console.log("RES", res);
+                return res.json();
+             }) 
+             .then(data => {
+               console.log("DATA", data)
+               return data
+              })
+             .catch( (err) => {
+                console.log("ERRa", err);
+              
+             });
+            }

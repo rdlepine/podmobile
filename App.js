@@ -17,7 +17,10 @@ import Home from './components/Home';
 import Dispatches from './components/Dispatches';
 import Activities from './components/Activities';
 import Config from './components/Config';
-
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -53,10 +56,12 @@ const Stack = StackNavigator( {
   }
 })
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
-      <Stack />
+      <Provider store={createStore(rootReducer, applyMiddleware(thunk))}>
+        <Stack />
+      </Provider>
     );
   }
 }
