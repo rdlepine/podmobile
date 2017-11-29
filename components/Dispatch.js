@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, Left, Right, Body, Switch } from 'native-base';
+import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, Left, Right, Body, Switch, Badge } from 'native-base';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -27,7 +27,32 @@ class Dispatch extends Component {
             {
                 dispatch: '6666666'
             },
+             {
+                dispatch: '6666666'
+            },
+            {
+                dispatch: '6666666'
+            },
+            {
+                dispatch: '6666666'
+            },
+            {
+                dispatch: '6666666'
+            },
+             {
+                dispatch: '6666666'
+            },
+            {
+                dispatch: '6666666'
+            },
+             {
+                dispatch: '6666666'
+            },
+              {
+                dispatch: '6666666'
+            },
             ,
+
            
         ]
     }
@@ -46,8 +71,8 @@ class Dispatch extends Component {
                          </Item>
                         <Content>
                             <List>
-                            { items.map( (item) => (
-                                <ListItem icon>
+                            { items.map( (item, key) => (
+                                <ListItem key={key} icon>
                                 <Left>
                                 <Icon name="truck" size={30} />
                                 </Left>
@@ -55,7 +80,9 @@ class Dispatch extends Component {
                                 <Text>{item.dispatch}</Text>
                                 </Body>
                                 <Right>
-                                <Switch value={false} />
+                                <Badge danger>
+                                    <Text>X</Text>
+                                </Badge>
                                 </Right>
                             </ListItem>
                             ))  
