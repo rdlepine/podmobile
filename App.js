@@ -17,10 +17,12 @@ import Home from './components/Home';
 import Dispatches from './components/Dispatches';
 import Activities from './components/Activities';
 import Config from './components/Config';
+import Dispatch from './components/Dispatch';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import {lightBlue, blue, white, gray, lightGray } from './utils/colors';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -32,27 +34,43 @@ const instructions = Platform.select({
 const Stack = StackNavigator( {
   Home: {
     screen: Home,
-    title: 'Home',
-    headerStyle: { marginTop: 2},
-    headerTitleStyle: { fontSize: 22, fontWeight: '600', textAlign: 'center', marginTop: 10},
+    navigationOptions: {
+      title: 'Home',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+    }
   },
   Dispatches: {
     screen: Dispatches,
-    title: 'Dispatches',
-    headerStyle: { marginTop: 2},
-    headerTitleStyle: { fontSize: 22, fontWeight: '600', textAlign: 'center', marginTop: 10},
+    navigationOptions: {
+      title: 'Dispatches',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+    }
+  },
+  Dispatch: {
+    screen: Dispatch,
+    navigationOptions: {
+      title: 'Dispatch',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+    }
   },
   Activities: {
     screen: Activities,
-    title: 'Activity',
-    headerStyle: { marginTop: 2},
-    headerTitleStyle: { fontSize: 22, fontWeight: '600', textAlign: 'center', marginTop: 10},
+    navigationOptions: {
+      title: 'Activities',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+    }
   },
   Config: {
     screen: Config,
-    title: 'Config',
-    headerStyle: { marginTop: 2},
-    headerTitleStyle: { fontSize: 22, fontWeight: '600', textAlign: 'center', marginTop: 10},
+    navigationOptions: {
+      title: 'Setup',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 5},
+    }
   }
 })
 
