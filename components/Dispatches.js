@@ -1,27 +1,39 @@
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import {View, ScrollView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { getDispatches } from '../actions';
 import { fetchDispatches } from '../actions';
 import { connect } from 'react-redux';
-import { Content, Container, Body, Card, CardItem, Button, Text } from 'native-base';
+import { Content, Container, Body, Card, CardItem, Button, Text, Input, Item } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Dispatches extends Component {
 
     componentDidMount() {
-       this.props.fetchDispatches();
+        this.fetchDispatches();
     }
 
+    fetchDispatches() {
+        this.props.fetchDispatches();
+    }
 
-    dispatchSelected = (event) => {
-        const { navigate } = this.props.navigation;
-        navigate('Dispatch');
+    setSearch = (event) => {
+       
+        let search = event.toUpperCase();
+        this.props.dispatches = this.props.dispatches.filter((dispatch) => {
+            let name = dispatch.ship_name.toUpperCase();;
+            if(name.indexOf(search) >= 0) {
+                console.log(search);
+                return dispatch;
+            }
+        })
     }
 
     render() {
 
         const { dispatches } = this.props;
+        const { navigate } = this.props.navigation;
         
         if(!dispatches) {
             return (
@@ -29,13 +41,16 @@ class Dispatches extends Component {
             )
         } 
 
-
         return (
             <View style={styles.container}>
+                <View style={styles.searchView}>
+                    <TextInput style={styles.searchBox} onChangeText={this.setSearch.bind(this)} />
+                    <Icon style={styles.icons} name="search" size={30} />
+                </View>
                 <ScrollView >           
                 {dispatches !== undefined  ?
                     dispatches.map( (dispatch, key) => (
-                        <TouchableOpacity key={key} onPress={this.dispatchSelected.bind(this)}>    
+                        <TouchableOpacity key={key} dnum={dispatch.dispatch_no} onPress={ () => navigate('Dispatch', {title: `Dispatch ${dispatch.dispatch_no}`})} >    
                             <View style={styles.dispatch}>
                                 <Text style={[styles.dispatchItem]}>{dispatch.dispatch_no}</Text>
                                 <Text style={[styles.dispatchItem]}>{dispatch.ship_name}</Text>
@@ -77,6 +92,25 @@ const styles = StyleSheet.create( {
         alignItems: 'center',
         flexDirection: 'column',
         marginTop: 10,
+    },
+    searchView: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+     
+    },
+    searchBox: {
+       flex: 2,
+       height: 50,
+       marginLeft: 20,
+       marginBottom: 10,
+       marginRight: 10,
+       height: 50,
+       
+    },
+    icons: {
+       marginRight: 10,
+       marginTop: 10,
+       color: blue
     },
     title: {
         fontSize: 32,

@@ -18,6 +18,7 @@ import Dispatches from './components/Dispatches';
 import Activities from './components/Activities';
 import Config from './components/Config';
 import Dispatch from './components/Dispatch';
+import Signature from './components/Signature';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -52,6 +53,14 @@ const Stack = StackNavigator( {
     screen: Dispatch,
     navigationOptions: {
       title: 'Dispatch',
+      headerStyle: { marginTop: 0},
+      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+    }
+  },
+  Signature: {
+    screen: Signature,
+    navigationOptions: {
+      title: 'Signature',
       headerStyle: { marginTop: 0},
       headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
     }

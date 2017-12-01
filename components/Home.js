@@ -24,12 +24,9 @@ class Home extends Component {
 
         return (
             <View style={styles.container}>
-                <Image style={styles.logo} source={require('../assets/pod.png')} />
+                <Image style={styles.logo} source={require('../assets/pod_logo.png')} />
                 <Button full block style={styles.menuButton} onPress={() => navigate('Dispatches')}>
                     <Text>Dispatches</Text>
-                </Button>
-                <Button full block style={styles.menuButton}  onPress={() => navigate('Activities')}>
-                     <Text>Activities</Text>
                 </Button>
                 <Button full block style={styles.menuButton}  onPress={() => navigate('Saved')}>
                     <Text>Saved</Text>
