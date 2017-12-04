@@ -7,12 +7,14 @@ import { Content, Container, Body, Card, CardItem, Button, Text, Input, Item } f
 import { NavigationActions } from 'react-navigation';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Orientation from 'react-native-orientation';
 
 class Dispatches extends Component {
 
     componentDidMount() {
         this.fetchDispatches();
-    }
+        Orientation.lockToPortrait();
+       }
 
     fetchDispatches() {
         this.props.fetchDispatches();

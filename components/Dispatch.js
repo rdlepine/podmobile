@@ -4,9 +4,18 @@ import { NavigationActions } from 'react-navigation';
 import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, Left, Right, Body, Switch, Badge } from 'native-base';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Orientation from 'react-native-orientation';
 
 class Dispatch extends Component {
 
+
+    componentDidMount() {
+        Orientation.lockToPortrait();
+    }
+
+    componentWillMount() {
+//        Orientation.lockToPortrait();
+    }
 
     state = {
         items: [],

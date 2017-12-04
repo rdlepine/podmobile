@@ -3,8 +3,13 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Container, Header, Content, Button, Text } from 'native-base';
+import Orientation from 'react-native-orientation';
 
 class Home extends Component {
+
+    componentDidMount() {
+        Orientation.lockToPortrait();
+    }
 
     goWhere = (whereTo, event) => {
        
