@@ -9,6 +9,13 @@ export function setDispatches(dispatches) {
     }
 }
 
+export function setDispatch(dispatch) {
+    return {
+        type: c.SET_DISPATCH,
+        dispatch
+    }
+}
+
 export function fetchDispatches() {
     
      return (dispatch) => {

@@ -32,6 +32,11 @@ class Dispatches extends Component {
         })
     }
 
+    dispatchScreen = (dispatch) => {
+        const { navigate } = this.props.navigation;
+        navigate('Dispatch', {title: `Dispatch a`});
+    }
+
     render() {
 
         const { dispatches } = this.props;
@@ -52,7 +57,7 @@ class Dispatches extends Component {
                 <ScrollView >           
                 {dispatches !== undefined  ?
                     dispatches.map( (dispatch, key) => (
-                        <TouchableOpacity key={key} dnum={dispatch.dispatch_no} onPress={ () => navigate('Dispatch', {title: `Dispatch ${dispatch.dispatch_no}`})} >    
+                        <TouchableOpacity key={key} dnum={dispatch.dispatch_no} onPress={this.dispatchScreen.bind(dispatch)} >    
                             <View style={styles.dispatch}>
                                 <Text style={[styles.dispatchItem]}>{dispatch.dispatch_no}</Text>
                                 <Text style={[styles.dispatchItem]}>{dispatch.ship_name}</Text>
@@ -85,6 +90,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDispatches: () => dispatch(fetchDispatches()),
+        setDispatch: (dispatch) => dispatch(setDispatch)
     };
 };
 

@@ -8,13 +8,12 @@ import Orientation from 'react-native-orientation';
 
 class Dispatch extends Component {
 
-
     componentDidMount() {
         Orientation.lockToPortrait();
-    }
-
-    componentWillMount() {
-//        Orientation.lockToPortrait();
+        const {setParams} = this.props.navigation;
+        console.log(this.props.navigation);
+        setParams({ title: "a" })
+      
     }
 
     state = {

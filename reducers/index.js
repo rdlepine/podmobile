@@ -10,8 +10,18 @@ function dispatches(state = [], action) {
     }
 }
 
+function dispatch(state = {}, action) {
+    switch(action.type) {
+        case c.SET_DISPATCH:
+            return action.dispatch;
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers( {
     dispatches,
+    dispatch
 }); 
 
 export default rootReducer;
