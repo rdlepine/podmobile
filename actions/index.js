@@ -10,6 +10,7 @@ export function setDispatches(dispatches) {
 }
 
 export function setDispatch(dispatch) {
+    console.log("dnaaaaaaaau", dispatch)
     return {
         type: c.SET_DISPATCH,
         dispatch

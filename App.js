@@ -19,6 +19,7 @@ import Activities from './components/Activities';
 import Config from './components/Config';
 import Dispatch from './components/Dispatch';
 import Signature from './components/Signature';
+import Login from './components/Login';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -33,26 +34,33 @@ const instructions = Platform.select({
 });
 
 const Stack = StackNavigator( {
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Config: {
+    screen: Config,
+    navigationOptions: {
+      header: null
+    }
+  },
   Home: {
     screen: Home,
     navigationOptions: {
-      title: 'Home',
-      headerStyle: { marginTop: 0},
-      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+      header: null
     }
   },
   Dispatches: {
     screen: Dispatches,
     navigationOptions: {
-      title: 'Dispatches',
-      headerStyle: { marginTop: 0},
-      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+      header: null
     }
   },
   Dispatch: {
     screen: Dispatch,
     navigationOptions: {
-      title: 'Dispatch',
       headerStyle: { marginTop: 0},
       headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
     }
@@ -71,14 +79,6 @@ const Stack = StackNavigator( {
       title: 'Activities',
       headerStyle: { marginTop: 0},
       headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
-    }
-  },
-  Config: {
-    screen: Config,
-    navigationOptions: {
-      title: 'Setup',
-      headerStyle: { marginTop: 0},
-      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 5},
     }
   }
 })

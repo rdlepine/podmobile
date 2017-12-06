@@ -5,15 +5,16 @@ import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, 
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Orientation from 'react-native-orientation';
+import { connect } from 'react-redux';
 
 class Dispatch extends Component {
 
-    componentDidMount() {
-        Orientation.lockToPortrait();
-        const {setParams} = this.props.navigation;
-        console.log(this.props.navigation);
-        setParams({ title: "a" })
-      
+    static navigationOptions = ({ navigation }) => ({
+           title: `Dispatch ${navigation.state.params.title}`,
+    });
+
+     componentDidMount() {
+        Orientation.lockToPortrait();  
     }
 
     state = {
@@ -24,7 +25,7 @@ class Dispatch extends Component {
     addDispatchItem() {
         if(this.state.item.length === 0) return;
         let items = this.state.items;
-        items.push({dispatch: this.state.item});
+        items.unshift({dispatch: this.state.item});
         this.setState({items: items});
         this.setState({item:''});
     }
@@ -185,5 +186,12 @@ const styles =  StyleSheet.create({
     }
 })
 
+const mapStateToProps = (state) => {
+    return {
+        dnum: state.dispatch,
+      
+    };
+};
+   
+ export default connect(mapStateToProps)(Dispatch);
 
-export default Dispatch;

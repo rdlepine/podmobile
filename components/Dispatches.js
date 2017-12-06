@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, ScrollView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { getDispatches } from '../actions';
-import { fetchDispatches } from '../actions';
+import { fetchDispatches, setDispatch } from '../actions';
 import { connect } from 'react-redux';
 import { Content, Container, Body, Card, CardItem, Button, Text, Input, Item } from 'native-base';
 import { NavigationActions } from 'react-navigation';
@@ -14,7 +14,8 @@ class Dispatches extends Component {
     componentDidMount() {
         this.fetchDispatches();
         Orientation.lockToPortrait();
-       }
+      
+    }
 
     fetchDispatches() {
         this.props.fetchDispatches();
@@ -23,18 +24,19 @@ class Dispatches extends Component {
     setSearch = (event) => {
        
         let search = event.toUpperCase();
-        this.props.dispatches = this.props.dispatches.filter((dispatch) => {
-            let name = dispatch.ship_name.toUpperCase();;
+        this.props.dispatches = this.props.dispatches.filter((dnum) => {
+            let name = dnum.ship_name.toUpperCase();;
             if(name.indexOf(search) >= 0) {
                 console.log(search);
-                return dispatch;
+                return dnum;
             }
         })
     }
 
-    dispatchScreen = (dispatch) => {
+    dispatchScreen = (dnum, event) => {
         const { navigate } = this.props.navigation;
-        navigate('Dispatch', {title: `Dispatch a`});
+        this.props.setDispatch(dnum);
+        navigate('Dispatch', {title: `${dnum.dispatch_no}`});
     }
 
     render() {
@@ -50,6 +52,10 @@ class Dispatches extends Component {
 
         return (
             <View style={styles.container}>
+                <View style={{flexDirection: 'row'}}>
+                    <Icon style={styles.icons} name="arrow-left" size={30} />
+                    <Text style={styles.title}>Dispatches</Text>   
+                </View> 
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchBox} onChangeText={this.setSearch.bind(this)} />
                     <Icon style={styles.icons} name="search" size={30} />
@@ -57,17 +63,19 @@ class Dispatches extends Component {
                 <ScrollView >           
                 {dispatches !== undefined  ?
                     dispatches.map( (dispatch, key) => (
-                        <TouchableOpacity key={key} dnum={dispatch.dispatch_no} onPress={this.dispatchScreen.bind(dispatch)} >    
-                            <View style={styles.dispatch}>
-                                <Text style={[styles.dispatchItem]}>{dispatch.dispatch_no}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.ship_name}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.ship_addr1}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.ship_addr2}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.citystatezip}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.phone}</Text>
-                                <Text style={[styles.dispatchItem]}>{dispatch.readyclose}</Text>
-                             </View>
-                         </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity key={key}  onPress={this.dispatchScreen.bind(this, dispatch)} >    
+                                <View style={styles.dispatch}>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.dispatch_no}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.ship_name}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.ship_addr1}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.ship_addr2}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.citystatezip}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.phone}</Text>
+                                    <Text style={[styles.dispatchItem]}>{dispatch.readyclose}</Text>
+                                </View>
+                            </TouchableOpacity>
+                         </View>
                     ))
                     : 
                         <View>
@@ -79,20 +87,6 @@ class Dispatches extends Component {
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        dispatches: state.dispatches,
-      
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchDispatches: () => dispatch(fetchDispatches()),
-        setDispatch: (dispatch) => dispatch(setDispatch)
-    };
-};
 
 const styles = StyleSheet.create( {
     container: {
@@ -121,9 +115,10 @@ const styles = StyleSheet.create( {
        color: blue
     },
     title: {
-        fontSize: 32,
-        fontStyle: 'italic',
-        marginBottom: 10
+        fontSize: 24,
+        marginBottom: 10,
+        color: 'blue',
+        fontWeight: '600',
     },
     headerText: {
         fontSize: 20,
@@ -157,5 +152,21 @@ const styles = StyleSheet.create( {
     },
   
 })
+
+
+const mapStateToProps = (state) => {
+    return {
+        dispatches: state.dispatches,
+      
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchDispatches: () => dispatch(fetchDispatches()),
+        setDispatch: (dnum) => dispatch(setDispatch(dnum))
+    };
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dispatches);

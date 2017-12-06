@@ -39,7 +39,7 @@ class Home extends Component {
                 <Button full block style={styles.menuButton}  onPress={() => navigate('Config')}>
                    <Text>Setup</Text>
                 </Button>
-                <Button full block style={styles.menuButton}  onPress={() => navigate('Dispatches')}>
+                <Button full block style={styles.menuButton}  onPress={() => navigate('Login')}>
                     <Text>Exit</Text>
                 </Button>
             </View>
@@ -66,6 +66,7 @@ const styles =  StyleSheet.create({
     logo: {
         height: 30,
         marginTop: 20,
+        marginBottom: 40,
         height: 50,
         width: 270,
     }
