@@ -11,11 +11,19 @@ class Dispatch extends Component {
 
     static navigationOptions = ({ navigation }) => ({
            title: `Dispatch ${navigation.state.params.title}`,
+           
     });
 
      componentDidMount() {
         Orientation.lockToPortrait();  
+        this.props.navigation.setParams({
+            onBackPress: this._handleBackPress
+          });
     }
+
+    _handleBackPress = () => {
+        console.log("BACKKKKK");
+      }
 
     state = {
         items: [],
@@ -72,8 +80,17 @@ class Dispatch extends Component {
         const { items } = this.state;
         const { navigate } = this.props.navigation;
         return (
-           <Container style={styles.container}>
-                <Text style={styles.headerText}>Scan/Enter Item</Text>
+                <Container style={styles.container}>
+                    <View style={styles.header}>
+                    <TouchableOpacity onPress={() => navigate('Dispatches')}>
+                        <Icon style={styles.headerIcon} name="chevron-left" size={20} />
+                    </TouchableOpacity>
+                    <Text style={[styles.title, {flex: 2}]}>Dispatches</Text>   
+                 </View> 
+                <View style={{flexDirection: 'row'}}>
+                    <Icon name="barcode" size={25} style={{marginTop: 10, marginLeft: 20}} />
+                    <Text style={styles.headerText}>Scan/Enter Item</Text>
+                </View>
                 <View style={styles.content}>
                      <View style={styles.main}>
                         <View style={styles.input}>
@@ -183,6 +200,21 @@ const styles =  StyleSheet.create({
     list: {
         borderWidth: .5
         
+    },
+    headerIcon: {
+        marginRight: 10,
+        marginTop: 8,
+        marginLeft: 10,
+        color: blue,
+        color: '#000',
+     },
+     header: {
+        marginTop: 0,
+        flexDirection: 'row',
+        backgroundColor: white,
+        borderColor: lightGray,
+        borderBottomWidth: 2,
+       
     }
 })
 

@@ -51,10 +51,12 @@ class Dispatches extends Component {
         } 
 
         return (
-            <View style={styles.container}>
-                <View style={{flexDirection: 'row'}}>
-                    <Icon style={styles.icons} name="arrow-left" size={30} />
-                    <Text style={styles.title}>Dispatches</Text>   
+            <Container style={styles.container}>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => navigate('Home')}>
+                        <Icon style={styles.headerIcon} name="chevron-left" size={20} />
+                    </TouchableOpacity>
+                    <Text style={[styles.title, {flex: 2}]}>Dispatches</Text>   
                 </View> 
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchBox} onChangeText={this.setSearch.bind(this)} />
@@ -63,8 +65,8 @@ class Dispatches extends Component {
                 <ScrollView >           
                 {dispatches !== undefined  ?
                     dispatches.map( (dispatch, key) => (
-                        <View>
-                            <TouchableOpacity key={key}  onPress={this.dispatchScreen.bind(this, dispatch)} >    
+                        <View key={key}>
+                            <TouchableOpacity onPress={this.dispatchScreen.bind(this, dispatch)} >    
                                 <View style={styles.dispatch}>
                                     <Text style={[styles.dispatchItem]}>{dispatch.dispatch_no}</Text>
                                     <Text style={[styles.dispatchItem]}>{dispatch.ship_name}</Text>
@@ -83,7 +85,7 @@ class Dispatches extends Component {
                         </View>
                 }
             </ScrollView>
-            </View>
+            </Container>
         )
     }
 }
@@ -93,7 +95,7 @@ const styles = StyleSheet.create( {
         flex: 1,
         alignItems: 'center',
         flexDirection: 'column',
-        marginTop: 10,
+        marginTop: 0,
     },
     searchView: {
         flexDirection: 'row',
@@ -109,21 +111,23 @@ const styles = StyleSheet.create( {
        height: 50,
        
     },
-    icons: {
+    headerIcon: {
        marginRight: 10,
-       marginTop: 10,
-       color: blue
+       marginTop: 8,
+       marginLeft: 10,
+       color: blue,
+       color: '#000',
     },
     title: {
-        fontSize: 24,
+        fontSize: 22,
         marginBottom: 10,
         color: 'blue',
-        fontWeight: '600',
+        fontWeight: '400',
     },
     headerText: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'blue',
-        fontWeight: '600',
+        fontWeight: '500',
         textAlign: 'center',
         marginBottom: 5
     },
@@ -148,9 +152,17 @@ const styles = StyleSheet.create( {
     },
     dispatchItem: {
         fontSize: 12,
-        alignItems: 'center'
+        alignItems: 'center',
     },
-  
+    header: {
+        marginTop: 0,
+        flexDirection: 'row',
+        backgroundColor: white,
+        borderColor: lightGray,
+        borderBottomWidth: 2,
+       
+    }
+
 })
 
 

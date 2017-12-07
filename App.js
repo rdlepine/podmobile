@@ -61,8 +61,7 @@ const Stack = StackNavigator( {
   Dispatch: {
     screen: Dispatch,
     navigationOptions: {
-      headerStyle: { marginTop: 0},
-      headerTitleStyle: { color: blue, fontSize: 22, fontWeight: '500', textAlign: 'center', marginTop: 10},
+      header: null
     }
   },
   Signature: {
