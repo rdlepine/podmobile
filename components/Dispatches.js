@@ -8,6 +8,7 @@ import { NavigationActions } from 'react-navigation';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Orientation from 'react-native-orientation';
+import Header from './Header';
 
 class Dispatches extends Component {
 
@@ -52,12 +53,7 @@ class Dispatches extends Component {
 
         return (
             <Container style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigate('Home')}>
-                        <Icon style={styles.headerIcon} name="chevron-left" size={20} />
-                    </TouchableOpacity>
-                    <Text style={[styles.title, {flex: 2}]}>Dispatches</Text>   
-                </View> 
+                <Header nav={navigate} navTo="Home" title="Dispatches" />
                 <View style={styles.searchView}>
                     <TextInput style={styles.searchBox} onChangeText={this.setSearch.bind(this)} />
                     <Icon style={styles.icons} name="search" size={30} />

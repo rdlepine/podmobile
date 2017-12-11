@@ -20,6 +20,7 @@ import Config from './components/Config';
 import Dispatch from './components/Dispatch';
 import Signature from './components/Signature';
 import Login from './components/Login';
+import Header from './components/Header';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -60,6 +61,12 @@ const Stack = StackNavigator( {
   },
   Dispatch: {
     screen: Dispatch,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Header: {
+    screen: Header,
     navigationOptions: {
       header: null
     }

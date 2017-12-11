@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, Left, Right, Body, Switch, Badge } from 'native-base';
+import { Container, Content, Button, Text, List, ListItem, Item, Input, Left, Right, Body, Switch, Badge } from 'native-base';
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Orientation from 'react-native-orientation';

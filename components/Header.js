@@ -1,4 +1,4 @@
-mport React, {Component} from 'react';
+import React, {Component} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import { Content, Container, Text } from 'native-base';
 import { NavigationActions } from 'react-navigation';
@@ -11,14 +11,12 @@ class Header extends Component {
 
     render() {
 
-        const { navigate } = this.props.navigation;
-
         return (
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigate('Home')}>
+                <TouchableOpacity onPress={() => this.props.nav(this.props.navTo)}>
                     <Icon style={styles.headerIcon} name="chevron-left" size={20} />
                 </TouchableOpacity>
-                <Text style={[styles.title, {flex: 2}]}>Test</Text>   
+                <Text style={[styles.title, {flex: 2}]}>{this.props.title}</Text>   
             </View> 
          )
     }
