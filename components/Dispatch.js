@@ -5,6 +5,7 @@ import { Container, Header, Content, Button, Text, List, ListItem, Item, Input, 
 import {lightBlue, blue, white, gray, lightGray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Orientation from 'react-native-orientation';
+import Header from './Header';
 import { connect } from 'react-redux';
 
 class Dispatch extends Component {

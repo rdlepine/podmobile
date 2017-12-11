@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-
+ 
 import { StackNavigator } from 'react-navigation';
 import Home from './components/Home';
 import Dispatches from './components/Dispatches';

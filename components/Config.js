@@ -17,7 +17,8 @@ class Config extends Component {
 
         return (
             <View>
-                <Text>Config</Text>
+                <Text>ddddd</Text>
+                
             </View>
         )
     }
