@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 export const DISPATCH_STORAGE_KEY = 'podDispath:dispatches'
-export const STATUS_STORAGE_KEY = 'podDispath:status'
+export const CONFIG_STORAGE_KEY = 'podDispath:config'
 export function setLastQuizCompleteTime(dt) {
     let lastQuizTime = {
         lastQuiz: {
@@ -10,35 +10,23 @@ export function setLastQuizCompleteTime(dt) {
     return AsyncStorage.mergeItem(STATUS_STORAGE_KEY, JSON.stringify(lastQuizTime));
 }
 
-export function getQuizStatus() {
-    return AsyncStorage.getItem(STATUS_STORAGE_KEY)
-    .then( (status) => {
-         if(status) {
-             return JSON.parse(status);
-        }
-        return "{}";
-    }).catch( (err) => {
-        console.log("ERR1",err);
-    });
-}
-
-export function submitEntry(deck) {
+export function submitEntry(stop) {
      return AsyncStorage.mergeItem(DISPATCH_STORAGE_KEY, JSON.stringify(deck));
 }
 
-export function addDeck(deck) {
-    let newDeck = {
-       [deck]: deck
+export function addStop(stop) {
+    let newStop = {
+       [stop]: stop
     }
 
     return AsyncStorage.setItem(DISPATCH_STORAGE_KEY, JSON.stringify(newDeck));
 }
 
-export function getDecks() {
+export function getStops() {
     return AsyncStorage.getItem(DISPATCH_STORAGE_KEY)
-        .then( (decks) => {
-             if(decks) {
-                 return decks;
+        .then( (stops) => {
+             if(stops) {
+                 return stops;
             }
             return "{}";
         }).catch( (err) => {
