@@ -14,7 +14,7 @@ class Header extends Component {
         return (
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => this.props.nav(this.props.navTo)}>
-                    <Icon style={styles.headerIcon} name="chevron-left" size={20} />
+                    <Icon style={styles.headerIcon} name="arrow-left" size={20} />
                 </TouchableOpacity>
                 <Text style={[styles.title, {flex: 2}]}>{this.props.title}</Text>   
             </View> 

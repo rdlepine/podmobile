@@ -10,11 +10,6 @@ import { connect } from 'react-redux';
 
 class Dispatch extends Component {
 
-    static navigationOptions = ({ navigation }) => ({
-           title: `Dispatch ${navigation.state.params.title}`,
-           
-    });
-
      componentDidMount() {
         Orientation.lockToPortrait();  
         this.props.navigation.setParams({
@@ -82,12 +77,7 @@ class Dispatch extends Component {
         const { navigate } = this.props.navigation;
         return (
                 <Container style={styles.container}>
-                    <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigate('Dispatches')}>
-                        <Icon style={styles.headerIcon} name="chevron-left" size={20} />
-                    </TouchableOpacity>
-                    <Text style={[styles.title, {flex: 2}]}>Dispatches</Text>   
-                 </View> 
+                <Header nav={navigate} navTo="Dispatches" title={`Dispatch ${this.props.dnum.dispatch_no}`} />
                 <View style={{flexDirection: 'row'}}>
                     <Icon name="barcode" size={25} style={{marginTop: 10, marginLeft: 20}} />
                     <Text style={styles.headerText}>Scan/Enter Item</Text>

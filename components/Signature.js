@@ -22,10 +22,9 @@ class Signature extends Component {
         //result.encoded - for the base64 encoded png
         //result.pathName - for the file path name
         const { navigate } = this.props.navigation;
-        console.log(result);
         result.viewMode="portrait";
         this.props.onSave && this.props.onSave(result);
-        navigate('Dispatch');
+        navigate('Dispatch', {title: ""});
      }
 
     render() {
