@@ -128,7 +128,7 @@ const styles = StyleSheet.create( {
         marginBottom: 5
     },
     dispatch: {
-        height: 120,
+        height: 140,
         width: 300,
         marginBottom: 5,
         marginLeft: 10,

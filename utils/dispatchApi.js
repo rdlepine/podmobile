@@ -1,4 +1,4 @@
-const api = "http://192.168.1.64/pod"
+const api = "http://69.174.245.140"
 
 // Generate a unique token for storing your bookshelf data on the backend server.
 let token = "PODME";
@@ -9,7 +9,7 @@ const headers = {
 }
 
 export const getDispatches = () =>  {
-       return fetch(`${api}/PalmStopsJson.php`, { headers })
+      return fetch(`${api}/PalmStopsJson.php`, { headers })
               .then( (res) => { 
                 console.log("RES", res);
                 return res.json();
