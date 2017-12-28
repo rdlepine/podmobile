@@ -80,7 +80,7 @@ class Dispatches extends Component {
                             <Text>{dispatches.length} Dispatches</Text>
                         </View>
                 }
-            </ScrollView>
+                 </ScrollView>
             </Container>
         )
     }
