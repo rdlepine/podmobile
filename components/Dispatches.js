@@ -58,7 +58,7 @@ class Dispatches extends Component {
                     <TextInput style={styles.searchBox} onChangeText={this.setSearch.bind(this)} />
                     <Icon style={styles.icons} name="search" size={30} />
                 </View>
-                <ScrollView >           
+                <ScrollView>           
                 {dispatches !== undefined  ?
                     dispatches.map( (dispatch, key) => (
                         <View key={key}>
